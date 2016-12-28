@@ -1,0 +1,45 @@
+<html>
+<body>
+  <h1>NoteGen</h1>
+  <table border="1">
+    <th>Description</th><th>Input</th>
+    <tr>
+      <td>Source Letter</td>
+      <td><input id="srcLetter"></td>
+    </tr>
+    <tr>
+      <td>Source text</td>
+      <td><textarea id="srcText"></textarea></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><button onclick="processText()">Process</button></td>
+    </tr>
+  </table>
+  <textarea id="outText">Output will go here. Copy/paste this into Excel</textarea>
+  <script>
+
+    var srcText   = document.getElementById("srcText");
+    var outText   = document.getElementById("outText");
+    var srcLetter = document.getElementById("srcLetter");
+
+    function processText() {
+      var sentences = srcText.value.split(".");
+      var ret = new Array();
+      for (var i = 0; i < sentences.length; i++) {
+        if (confirm(sentences[i])) {
+          ret.push(sentences[i]);
+        }
+      }
+      formatOutput(ret);
+    }
+
+    function formatOutput(sentences) {
+      outText.value = "";
+      for (var sentence in sentences) {
+        outText.value += srcLetter.value + '\t' +sentences[sentence] + '\n';
+      }
+    }
+
+  </script>
+</body>
+</html>
