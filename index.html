@@ -26,8 +26,9 @@
       var sentences = srcText.value.split(".");
       var ret = new Array();
       for (var i = 0; i < sentences.length; i++) {
-        if (confirm(sentences[i])) {
-          ret.push(sentences[i]);
+        var sentence = sentences[i].trim();
+        if (confirm(sentence)) {
+          ret.push(sentence);
         }
       }
       formatOutput(ret);
